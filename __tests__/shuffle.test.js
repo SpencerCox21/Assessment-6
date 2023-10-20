@@ -16,14 +16,15 @@ describe("shuffle should work properly", () => {
     expect(abcArr).not.toEqual(result)
 
   });
+
+  test("are the items the same as in the array provided.", async () => {
+
+    let abcArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+    let result = shuffle(abcArr)
+    expect(result).toContain('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j')
+
+  });
+
 });
 
-
-
-
-
-
-// let abcArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
-
-// console.log(shuffle(abcArr))
 
