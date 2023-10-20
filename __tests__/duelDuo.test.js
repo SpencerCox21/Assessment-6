@@ -11,9 +11,89 @@ afterEach(async () => {
 });
 
 describe("Duel Duo tests", () => {
-  test("page loads with title", async () => {
+  test("App is able to start a duel.", async () => {
     await driver.get("http://localhost:8000");
     await driver.wait(until.titleIs("Duel Duo"), 1000);
+
+    await driver.sleep(1000);
+
+    await driver.findElement(By.id('draw')).click()
+
+    await driver.sleep(3000);
+
   });
+
+  test("App is able to select 2 fighters.", async () => {
+    await driver.get("http://localhost:8000");
+    await driver.wait(until.titleIs("Duel Duo"), 1000);
+
+    await driver.sleep(1000);
+
+    await driver.findElement(By.id('draw')).click();
+
+    await driver.sleep(3000);
+
+    await driver.findElement(By.className('bot-btn')).click();
+
+    await driver.sleep(1000);
+
+    await driver.findElement(By.className('bot-btn')).click();
+
+    await driver.sleep(3000);
+  });
+
+
+  test("App is able to start a duel.", async () => {
+    await driver.get("http://localhost:8000");
+    await driver.wait(until.titleIs("Duel Duo"), 1000);
+
+    await driver.sleep(1000);
+
+    await driver.findElement(By.id('draw')).click();
+
+    await driver.sleep(3000);
+
+    await driver.findElement(By.className('bot-btn')).click();
+
+    await driver.sleep(1000);
+
+    await driver.findElement(By.className('bot-btn')).click();
+
+    await driver.sleep(1000);
+
+    await driver.findElement(By.id('duel')).click();
+
+    await driver.sleep(5000);
+  });
+
+  
+  test.only("App is able to return after a duel.", async () => {
+    await driver.get("http://localhost:8000");
+    await driver.wait(until.titleIs("Duel Duo"), 1000);
+
+    await driver.sleep(1000);
+
+    await driver.findElement(By.id('draw')).click();
+
+    await driver.sleep(3000);
+
+    await driver.findElement(By.className('bot-btn')).click();
+
+    await driver.sleep(1000);
+
+    await driver.findElement(By.className('bot-btn')).click();
+
+    await driver.sleep(1000);
+
+    await driver.findElement(By.id('duel')).click();
+    
+    await driver.sleep(5000);
+
+    await driver.findElement(By.id('play-again')).click();
+
+    await driver.sleep(3000);
+  });
+
+
 });
 
