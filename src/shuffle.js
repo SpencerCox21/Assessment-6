@@ -29,6 +29,13 @@ module.exports = (array) => {
   return result;
 };
 
+
+// let abcArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+
+
+// console.log(copyArray(abcArr))
+
+
 // The MIT License
 //
 // Copyright JS Foundation and other contributors <https://js.foundation/>
