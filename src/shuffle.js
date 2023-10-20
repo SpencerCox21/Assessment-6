@@ -30,11 +30,6 @@ module.exports = (array) => {
 };
 
 
-// let abcArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
-
-
-// console.log(copyArray(abcArr))
-
 
 // The MIT License
 //
