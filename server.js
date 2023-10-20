@@ -2,6 +2,22 @@ const express = require("express");
 const bots = require("./src/botsData");
 const shuffle = require("./src/shuffle");
 
+
+
+// include and initialize the rollbar library with your access token
+var Rollbar = require('rollbar')
+var rollbar = new Rollbar({
+  accessToken: '2efb61989bb44da8936c854c10cfb5b6',
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+})
+
+// record a generic message and send it to Rollbar
+rollbar.log('Hello world!')
+
+
+
+
 const playerRecord = {
   wins: 0,
   losses: 0,
@@ -46,6 +62,7 @@ app.get("/api/robots", (req, res) => {
   try {
     res.status(200).send(botsArr);
   } catch (error) {
+    rollbar.warning("ERROR: Unable to get all bots")
     console.error("ERROR GETTING BOTS", error);
     res.sendStatus(400);
   }
@@ -56,6 +73,7 @@ app.get("/api/robots/shuffled", (req, res) => {
     let shuffled = shuffle(bots);
     res.status(200).send(shuffled);
   } catch (error) {
+    rollbar.critical("ERROR: Unable to get shuffled bots")
     console.error("ERROR GETTING SHUFFLED BOTS", error);
     res.sendStatus(400);
   }
@@ -63,6 +81,7 @@ app.get("/api/robots/shuffled", (req, res) => {
 
 app.post("/api/duel", (req, res) => {
   try {
+    rollbar.info("INFO: Someone has started an EPIC ROBOT BATTLE!")
     const { compDuo, playerDuo } = req.body;
 
     const { compHealth, playerHealth } = calculateHealthAfterAttack({
@@ -76,9 +95,11 @@ app.post("/api/duel", (req, res) => {
       res.status(200).send("You lost!");
     } else {
       playerRecord.losses += 1;
+      rollbar.debug("BUG: loss count added to during a win.")
       res.status(200).send("You won!");
     }
   } catch (error) {
+    rollbar.critical("ERROR: Unable to start a duel.")
     console.log("ERROR DUELING", error);
     res.sendStatus(400);
   }
@@ -88,6 +109,7 @@ app.get("/api/player", (req, res) => {
   try {
     res.status(200).send(playerRecord);
   } catch (error) {
+    rollbar.warning("ERROR: Unable to get player's stats.")
     console.log("ERROR GETTING PLAYER STATS", error);
     res.sendStatus(400);
   }
