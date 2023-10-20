@@ -2,16 +2,20 @@ const shuffle = require("../src/shuffle");
 
 describe("shuffle should work properly", () => {
   
-  test("does the shuffle function return an array with the same length as the array provided.", async () => {
-
-    // expect(source.length).toEqual(result.length)
+  test("returns an array with the same length as the array provided.", async () => {
+    
+    let abcArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+    let result = shuffle(abcArr)
+    expect(result.length).toEqual(10)
   });
 
-  // test("can the shuffle function shuffle the items in the array provided.", async () => {
+  test("can the shuffle function shuffle the items in the array provided.", async () => {
 
-  //   let 
+    let abcArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+    let result = shuffle(abcArr)
+    expect(abcArr).not.toEqual(result)
 
-  // });
+  });
 });
 
 
@@ -19,7 +23,7 @@ describe("shuffle should work properly", () => {
 
 
 
-let abcArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+// let abcArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
 
+// console.log(shuffle(abcArr))
 
-console.log(shuffle(abcArr))
